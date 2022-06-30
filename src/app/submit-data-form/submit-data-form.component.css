@@ -1,0 +1,12 @@
+.error__message {
+ color: red;
+}
+
+div{
+ margin-top: 10px;
+ margin-bottom: 10px;
+}
+
+label {
+ margin-right: 5px;
+}

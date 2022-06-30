@@ -1,0 +1,40 @@
+<form [formGroup]="registrationForm">
+  <div>
+    <label for="id">ID</label>
+    <input type="number" name="id" id="id" formControlName="id" />
+    <div *ngIf="id?.touched && (id?.invalid || id?.errors?.['duplicate'])">
+      <small *ngIf="id?.touched && id?.invalid && !id?.errors?.['duplicate']" class="error__message"
+        >Please enter an ID!</small>
+      <small *ngIf="id?.errors?.['duplicate']" class="error__message">Duplicate value, please enter some new value!</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" formControlName="name" />
+    <small *ngIf="name?.touched && name?.invalid" class="error__message"
+      >Please enter a name!</small
+    >
+  </div>
+
+  <div>
+    <label for="sex">Sex</label>
+    <select name="sex" id="sex" formControlName="sex">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+      <option value="other">Other</option>
+      <option value="preforNot">Prefer not to say</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="age">Age</label>
+    <input type="text" name="age" id="age" formControlName="age" />
+    <small
+      class="error__message"
+      *ngIf="(age?.errors?.['outOfRange'] || age?.invalid) && age?.touched"
+      >To be an eligible employee, you have to be between 0 and 50 years old.
+    </small>
+  </div>
+</form>
+<button [disabled]="registrationForm.invalid" (click)="onSubmit(registrationForm.value)">Submit</button>
